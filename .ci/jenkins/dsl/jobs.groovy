@@ -2,10 +2,10 @@
 * This file is describing all the Jenkins jobs in the DSL format (see https://plugins.jenkins.io/job-dsl/)
 * needed by the Kogito pipelines.
 *
-* The main part of Jenkins job generation is defined into the https://github.com/kiegroup/kogito-pipelines repository.
+* The main part of Jenkins job generation is defined into the https://github.com/apache/incubator-kie-kogito-pipelines repository.
 *
 * This file is making use of shared libraries defined in
-* https://github.com/kiegroup/kogito-pipelines/tree/main/dsl/seed/src/main/groovy/org/kie/jenkins/jobdsl.
+* https://github.com/apache/incubator-kie-kogito-pipelines/tree/main/dsl/seed/src/main/groovy/org/kie/jenkins/jobdsl.
 */
 
 import org.kie.jenkins.jobdsl.model.JobType
@@ -42,7 +42,6 @@ void setupProfilingJob() {
     jobParams.env.putAll([
         JENKINS_EMAIL_CREDS_ID: "${JENKINS_EMAIL_CREDS_ID}",
 
-        REPO_NAME: 'kogito-operator',
         OPERATOR_IMAGE_NAME: 'kogito-operator-profiling',
         MAX_REGISTRY_RETRIES: 3,
         OPENSHIFT_API_KEY: 'OPENSHIFT_API',
@@ -63,7 +62,6 @@ void createSetupBranchJob() {
     JobParamsUtils.setupJobParamsAgentDockerBuilderImageConfiguration(this, jobParams)
     jobParams.env.putAll([
         JENKINS_EMAIL_CREDS_ID: "${JENKINS_EMAIL_CREDS_ID}",
-        REPO_NAME: 'kogito-operator',
         GIT_AUTHOR: "${GIT_AUTHOR_NAME}",
         AUTHOR_CREDS_ID: "${GIT_AUTHOR_CREDENTIALS_ID}",
         GITHUB_TOKEN_CREDS_ID: "${GIT_AUTHOR_TOKEN_CREDENTIALS_ID}",
@@ -165,7 +163,6 @@ void setupPromoteJob(JobType jobType) {
     jobParams.env.putAll([
         JENKINS_EMAIL_CREDS_ID: "${JENKINS_EMAIL_CREDS_ID}",
 
-        REPO_NAME: 'kogito-operator',
         MAX_REGISTRY_RETRIES: 3,
         OPENSHIFT_API_KEY: 'OPENSHIFT_API',
         OPENSHIFT_CREDS_KEY: 'OPENSHIFT_CREDS',
@@ -223,7 +220,6 @@ void setupExamplesImagesDeployJob(JobType jobType, String jobName = 'kogito-exam
     jobParams.env.putAll([
         JENKINS_EMAIL_CREDS_ID: "${JENKINS_EMAIL_CREDS_ID}",
 
-        REPO_NAME: 'kogito-operator',
         MAX_REGISTRY_RETRIES: 3,
         OPENSHIFT_API_KEY: 'OPENSHIFT_API',
         OPENSHIFT_CREDS_KEY: 'OPENSHIFT_CREDS',
@@ -288,7 +284,6 @@ void setupExamplesImagesPromoteJob(JobType jobType) {
     jobParams.env.putAll([
         JENKINS_EMAIL_CREDS_ID: "${JENKINS_EMAIL_CREDS_ID}",
 
-        REPO_NAME: 'kogito-operator',
         MAX_REGISTRY_RETRIES: 3,
         OPENSHIFT_API_KEY: 'OPENSHIFT_API',
         OPENSHIFT_CREDS_KEY: 'OPENSHIFT_CREDS',
